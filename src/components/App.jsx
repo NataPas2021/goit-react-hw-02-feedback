@@ -20,19 +20,12 @@ export class App extends Component {
     }) 
   }
 
-  neutralFeedback = () => {
-    this.setState(prevState => {
-      return {neutral: prevState.neutral + 1}
-    })
-  }
 
-  badFeedback = () => {
-    this.setState(prevState => {
-      return {bad: prevState.bad +1}
-    })
-  }
   countTotalFeedback = () => {
-    return { total: this.state.good + this.state.neutral + this.state.bad }
+    this.setState(prevState => {
+     return { total: prevState.good + prevState.neutral + prevState.bad }
+    })
+    
   }
 
   countPositiveFeedbackPercentage = () => {
@@ -44,7 +37,7 @@ export class App extends Component {
     <div className='app-container'>
       <>
         <h2>Please, leave feedback</h2>
-        <FeedbackOptions options={this.state} onLeaveFeedback={this.optionsFeedback}/>
+        <FeedbackOptions options={Object.keys(this.state)} onLeaveFeedback={this.optionsFeedback}/>
       </>
 
       <>
