@@ -12,18 +12,24 @@ export class App extends Component {
 
   optionsFeedback = () => {
     this.setState(prevState => {
-      console.log(this.state)
-      return {good: prevState.good + 1,
-             neutral: prevState.neutral +1,
-             bad: prevState.bad + 1
+      const options=this.state;
+      options.map(option => {
+        console.log(option)
+      if(option === option[0]) {
+        console.log(option)
       }
-    }) 
-  }
+      })
+      return {
+      
+
+        }   
+      })
+    }
 
 
   countTotalFeedback = () => {
     this.setState(prevState => {
-     return { total: prevState.good + prevState.neutral + prevState.bad }
+     return { total: prevState.good.value + prevState.neutral.value + prevState.bad.value }
     })
     
   }
