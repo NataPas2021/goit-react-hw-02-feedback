@@ -13,9 +13,9 @@ export class App extends Component {
   optionsFeedback = () => {
     this.setState(prevState => {
       const options=this.state;
+      console.log(options)
       options.map(option => {
-        console.log(option)
-      if(option === option[0]) {
+      if(option === "good") {
         console.log(option)
       }
       })
@@ -29,10 +29,14 @@ export class App extends Component {
 
   countTotalFeedback = () => {
     this.setState(prevState => {
-     return { total: prevState.good.value + prevState.neutral.value + prevState.bad.value }
-    })
-    
-  }
+      const options=this.state;
+      console.log(options)
+      options.reduce((acc) => {
+       return acc++;
+      }, 0)
+      })
+     return {}
+    }
 
   countPositiveFeedbackPercentage = () => {
     console.log("positive percentage")

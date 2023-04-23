@@ -1,5 +1,5 @@
 export const FeedbackOptions = (options, onLeaveFeedback) => {
-    console.log(options)
+    
     return (
          <>
          <button type="button" name={options.good} onClick={onLeaveFeedback}>Good</button>
