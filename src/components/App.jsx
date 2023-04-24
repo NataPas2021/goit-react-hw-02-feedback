@@ -29,13 +29,16 @@ export class App extends Component {
 
   countTotalFeedback = () => {
     this.setState(prevState => {
-      const options=this.state;
-      console.log(options)
-      options.reduce((acc) => {
-       return acc++;
-      }, 0)
-      })
-     return {}
+      const prevState=this.state;
+      console.log(prevState)
+      return prevState.map((option) => {
+          if(option === [option]) {
+            return {[option]: prevState[option].value +1}
+          }
+      }
+      );
+      )
+     
     }
 
   countPositiveFeedbackPercentage = () => {
