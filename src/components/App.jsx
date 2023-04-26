@@ -12,38 +12,34 @@ export class App extends Component {
 
   optionsFeedback = () => {
     this.setState(prevState => {
-      const options=this.state;
+      let options=Object.keys(this.state)
       console.log(options)
-      options.map(option => {
-      if(option === "good") {
-        console.log(option)
-      }
-      })
-      return {
-      
-
-        }   
-      })
-    }
-
+      options.map((option => {
+       console.log(prevState[option])
+        for(let i=0; i < options.length; i ++) {
+        if(options[i] === [option]) {
+          console.log(prevState[option])
+          return ({[option]: prevState[option] +1})
+        }}
+      })) 
+      })        
+  }
 
   countTotalFeedback = () => {
-    this.setState(prevState => {
-      const prevState=this.state;
-      console.log(prevState)
-      return prevState.map((option) => {
-          if(option === [option]) {
-            return {[option]: prevState[option].value +1}
-          }
-      }
-      );
-      )
-     
+    let options=Object.keys(this.state)
+    console.log("count")
+    let total = 0; 
+    for(let i=0; i < options.length; i++) {
+      total += options[i];
     }
+    return total;
+  };
+   
+     
 
   countPositiveFeedbackPercentage = () => {
     console.log("positive percentage")
-  }
+  };
 
   render() {
   return (
@@ -60,7 +56,6 @@ export class App extends Component {
       </>
       
     </div>
-  );
-    };
-};
-
+  )
+}
+}
