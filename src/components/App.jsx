@@ -1,7 +1,7 @@
 import { Component } from "react";
 //import { FeedbackTitle } from "./FeedbackTitle/FeedbackTitle";
-import {Statistics} from "./Statistics/Statistics";
 import { FeedbackOptions } from "./FeedbackOptions/FeedbackOptions";
+import {Statistics} from "./Statistics/Statistics";
 
 export class App extends Component {
   state = {
@@ -10,48 +10,36 @@ export class App extends Component {
     bad: 0
   }
 
-  optionsFeedback = () => {
+  optionsFeedback = (e) => {
+    const option = e.target.name;
     this.setState(prevState => {
-      let options=Object.keys(this.state)
-      console.log(options)
-      options.map((option => {
-       console.log(prevState[option])
-        for(let i=0; i < options.length; i ++) {
-        if(options[i] === [option]) {
-          console.log(prevState[option])
-          return ({[option]: prevState[option] +1})
-        }}
-      })) 
-      })        
+      return {[option]: prevState[option] + 1};
+        }
+    )
   }
+       
 
-  countTotalFeedback = () => {
-    let options=Object.keys(this.state)
-    console.log("count")
-    let total = 0; 
-    for(let i=0; i < options.length; i++) {
-      total += options[i];
-    }
-    return total;
+  countTotalFeedback = () => { 
+    return this.state.good + this.state.neutral + this.state.bad;
   };
    
-     
-
   countPositiveFeedbackPercentage = () => {
-    console.log("positive percentage")
+    return Math.round(this.state.good*100/(this.state.good + this.state.neutral + this.state.bad));
   };
 
   render() {
+    const options = Object.keys(this.state);
   return (
+
     <div className='app-container'>
       <>
         <h2>Please, leave feedback</h2>
-        <FeedbackOptions options={Object.keys(this.state)} onLeaveFeedback={this.optionsFeedback}/>
+        <FeedbackOptions options={options} onLeaveFeedback={this.optionsFeedback}/>
       </>
 
       <>
       <h2>Statistics</h2>
-        <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={this.countTotalFeedback} positivePercentage={this.countPositiveFeedbackPercentage}/>
+        <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={this.countTotalFeedback()} positivePercentage={this.countPositiveFeedbackPercentage()}/>
         
       </>
       
